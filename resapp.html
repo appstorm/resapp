@@ -1,0 +1,467 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ResApp POS Restaurant</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+    $("#myTab a").click(function(e){
+    	e.preventDefault();
+    	$(this).tab('show');
+    });
+});
+
+var pedidoControlador  = angular.module("MiPedido", []);
+
+pedidoControlador.controller(
+	'ProductoCtrl', function($scope){
+		$scope.productos = [{id:'1',nombre:'COMPLETO', valor:'1500'},
+							{id:'2',nombre:'ITALIANO', valor:'1500'},
+							{id:'3',nombre:'ESPECIAL', valor:'1300'},
+							{id:'4',nombre:'PALTA MAYO', valor:'1500'},
+							{id:'5',nombre:'TOMATE MAYO', valor:'1300'},
+							{id:'6',nombre:'PREMIUM', valor:'1900'},
+							{id:'7',nombre:'PREMIUM ITALIANO', valor:'1900'},
+							{id:'8',nombre:'CHAPARRITA', valor:'1500'},
+							{id:'9',nombre:'SOLITARIO', valor:'700'},
+							{id:'10',nombre:'COMPLETO SIN SALCHICHA', valor:'1500'},
+							{id:'11',nombre:'ITALIANO SIN SALCHICHA', valor:'1500'},
+							{id:'12',nombre:'AS DE LOMO', valor:'2500'},
+							{id:'13',nombre:'AS DE AVE', valor:'2500'},
+							{id:'14',nombre:'DISPONIBLE', valor:'0'},
+							{id:'15',nombre:'DISPONIBLE', valor:'0'},
+							{id:'16',nombre:'DISPONIBLE', valor:'0'},
+							{id:'17',nombre:'CHURRASCO SOLO', valor:'2000'},
+							{id:'18',nombre:'CHURRASCO ITALIANO', valor:'2600'},
+							{id:'19',nombre:'CHURRASCO COMPLETO', valor:'2700'},
+							{id:'20',nombre:'CHACARERO', valor:'2800'},
+							{id:'21',nombre:'BARROS LUCO', valor:'2600'},
+							{id:'22',nombre:'CHURRASCO TOMATE', valor:'2500'},
+							{id:'23',nombre:'CHURRASCO PALTA', valor:'2500'},
+							{id:'24',nombre:'CHURRASCO LECHUGA', valor:'2500'},
+							{id:'25',nombre:'DISPONIBLE', valor:'0'},
+							{id:'26',nombre:'DISPONIBLE', valor:'0'},
+							{id:'27',nombre:'DISPONIBLE', valor:'0'},
+							{id:'28',nombre:'DISPONIBLE', valor:'0'},
+							{id:'29',nombre:'DISPONIBLE', valor:'0'},
+							{id:'30',nombre:'DISPONIBLE', valor:'0'},
+							{id:'31',nombre:'DISPONIBLE', valor:'0'},
+							{id:'32',nombre:'DISPONIBLE', valor:'0'},
+							{id:'33',nombre:'AVE SOLA', valor:'2000'},
+							{id:'34',nombre:'AVE MAYO', valor:'2000'},
+							{id:'35',nombre:'AVE PALTA', valor:'2600'},
+							{id:'36',nombre:'AVE ITALIANA', valor:'2600'},
+							{id:'37',nombre:'AVE COMPLETA', valor:'2700'},
+							{id:'38',nombre:'AVE LUCO', valor:'2600'},
+							{id:'39',nombre:'AVE CHACARERA', valor:'2800'},
+							{id:'40',nombre:'AVE TOMATE', valor:'2500'},
+							{id:'41',nombre:'QUESO CALIENTE', valor:'1500'},
+							{id:'42',nombre:'BARROS JARPA', valor:'2600'},
+							{id:'43',nombre:'DISPONIBLE', valor:'0'},
+							{id:'44',nombre:'DISPONIBLE', valor:'0'},
+							{id:'45',nombre:'DISPONIBLE', valor:'0'},
+							{id:'46',nombre:'DISPONIBLE', valor:'0'},
+							{id:'47',nombre:'DISPONIBLE', valor:'0'},
+							{id:'48',nombre:'DISPONIBLE', valor:'0'},
+							{id:'49',nombre:'CAFE', valor:'500'},
+							{id:'50',nombre:'TE', valor:'500'},
+							{id:'51',nombre:'COCA COLA', valor:'500'},
+							{id:'52',nombre:'SPRITE', valor:'500'},
+							{id:'53',nombre:'FANTA', valor:'500'},
+							{id:'54',nombre:'SODA', valor:'500'},
+							{id:'55',nombre:'LECHE', valor:'700'},
+							{id:'56',nombre:'MILO', valor:'800'},
+							{id:'57',nombre:'LECHE CON MILO', valor:'1000'},
+							{id:'58',nombre:'CAPUCCINO', valor:'700'},
+							{id:'59',nombre:'DISPONIBLE', valor:'0'},
+							{id:'60',nombre:'DISPONIBLE', valor:'0'},
+							{id:'61',nombre:'DISPONIBLE', valor:'0'},
+							{id:'62',nombre:'DISPONIBLE', valor:'0'},
+							{id:'63',nombre:'DISPONIBLE', valor:'0'},
+							{id:'64',nombre:'DISPONIBLE', valor:'0'},
+							{id:'65',nombre:'LOMO', valor:'1000'},
+							{id:'66',nombre:'AVE', valor:'1000'},
+							{id:'67',nombre:'SALCHICHA PF', valor:'400'},
+							{id:'68',nombre:'SALCHICHA LLANQUIHUE', valor:'700'},
+							{id:'69',nombre:'PALTA', valor:'700'},
+							{id:'70',nombre:'QUESO', valor:'500'},
+							{id:'71',nombre:'POROTOS VERDES', valor:'500'},
+							{id:'72',nombre:'TOMATE', valor:'500'},
+							{id:'73',nombre:'LECHUGA', valor:'500'},
+							{id:'74',nombre:'AJI', valor:'500'},
+							{id:'75',nombre:'CHAMPIÑONES', valor:'500'},
+							{id:'76',nombre:'QUESILLO', valor:'700'},
+							{id:'77',nombre:'DISPONIBLE', valor:'0'},
+							{id:'78',nombre:'DISPONIBLE', valor:'0'},
+							{id:'79',nombre:'DISPONIBLE', valor:'0'},
+							{id:'80',nombre:'DISPONIBLE', valor:'0'},
+							{id:'81',nombre:'SIN MAYO', valor:'0'},
+							{id:'82',nombre:'POCA MAYO', valor:'0'},
+							{id:'83',nombre:'CON AJI', valor:'0'},
+							{id:'84',nombre:'POCO AJI', valor:'0'},
+							{id:'85',nombre:'SIN AJI', valor:'0'},
+							{id:'86',nombre:'DISPONIBLE', valor:'0'},
+							{id:'87',nombre:'DISPONIBLE', valor:'0'},
+							{id:'88',nombre:'DISPONIBLE', valor:'0'},
+							{id:'89',nombre:'DISPONIBLE', valor:'0'},
+							{id:'90',nombre:'DISPONIBLE', valor:'0'},
+							{id:'91',nombre:'DISPONIBLE', valor:'0'},
+							{id:'92',nombre:'DISPONIBLE', valor:'0'},
+							{id:'93',nombre:'DISPONIBLE', valor:'0'},
+							{id:'94',nombre:'DISPONIBLE', valor:'0'},
+							{id:'95',nombre:'DISPONIBLE', valor:'0'},
+							{id:'96',nombre:'DISPONIBLE', valor:'0'},
+							{id:'97',nombre:'COCA COLA LT', valor:'1500'},
+							{id:'98',nombre:'FANTA LT', valor:'1500'},
+							{id:'99',nombre:'SPRITE LT', valor:'1500'},
+							{id:'100',nombre:'COCA COLA 1/2 LT', valor:'1000'},
+							{id:'101',nombre:'FANTA 1/2 LT', valor:'1000'},
+							{id:'102',nombre:'SPRITE 1/2 LT', valor:'1000'},
+							{id:'103',nombre:'COCA COLA MINI', valor:'700'},
+							{id:'104',nombre:'FANTA MINI', valor:'700'},
+							{id:'105',nombre:'VITAL CON GAS', valor:'800'},
+							{id:'106',nombre:'VITAL SIN GAS', valor:'800'},
+							{id:'107',nombre:'NECTAR', valor:'900'},
+							{id:'108',nombre:'ENERGIZANTE', valor:'1500'},
+							{id:'109',nombre:'DISPONIBLE', valor:'0'},
+							{id:'110',nombre:'DISPONIBLE', valor:'0'},
+							{id:'111',nombre:'DISPONIBLE', valor:'0'},
+							{id:'112',nombre:'DISPONIBLE', valor:'0'},
+							];
+		$scope.pedido = [];
+		$scope.agregarProducto = function(p){
+			
+			for	(index = 0; index < $scope.productos.length; index++) {
+				if(p==$scope.productos[index].id){ 
+					$scope.pedido.push({producto:$scope.productos[index], cantidad:1});
+				}
+			}
+		}
+		$scope.getTotal = function(){
+            var total = 0;
+				for(var i = 0; i < $scope.productos.length; i++){
+			var product = $scope.pedido.productos[i];
+				total += (product.valor);
+			}
+			return total;
+		}
+	}
+)
+
+//aca hay que picar con angular para agregar la mesa al pedido
+//Crear otra funcion que inserte un numero correlativo del 1 al 100 en loop, la cual sera el numero de venta
+
+		
+</script>
+<style type="text/css">
+	.bs-resapp{
+		margin: 20px;
+	}
+	body {background-color: #CEF6CE;}
+	.btn-custom {
+    padding: 5px 10px;
+    font-size: 15px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+			
+}
+</style>
+</head>
+<body>
+	<div class="bs-resapp">
+		<div class="col-sm-1"><button type="button" class="btn btn-primary btn-custom">MESA 1</button></div>
+		<div class="col-sm-1"><button type="button" class="btn btn-primary btn-custom">MESA 2</button></div>
+		<div class="col-sm-1"><button type="button" class="btn btn-primary btn-custom">MESA 3</button></div>
+		<div class="col-sm-1"><button type="button" class="btn btn-primary btn-custom">MESA 4</button></div>
+		<div class="col-sm-1"><button type="button" class="btn btn-primary btn-custom">MESA 5</button></div>
+		<div class="col-sm-1"><button type="button" class="btn btn-primary btn-custom">2&#176;PISO</button></div>
+		<div class="col-sm-1"><button type="button" class="btn btn-primary btn-custom">P/LLEVAR</button></div>
+	</div>
+<!-- SEPARACION ------------------------------------------------------------------------------------ -->
+<br></br>
+<div class="bs-resapp">
+	<ul class="nav nav-tabs" id="myTab">
+		<li class="active"><a href="#completos">COMPLETOS</a></li>
+		<li><a href="#churrascos">CHURRASCOS</a></li>
+		<li><a href="#sandwich">SANDWICH</a></li>
+		<li><a href="#liquidos">L&#205;QUIDOS</a></li>
+		<li><a href="#agregados">AGREGADOS</a></li>
+		<li><a href="#observaciones">OBSERVACIONES</a></li>
+		<li><a href="#cooler">COOLER</a></li>
+		<li><a href="#pedido">PEDIDO</a></li>
+	</ul>
+	<br></br>
+	<div class="tab-content" ng-app="MiPedido" ng-controller="ProductoCtrl">
+		<div id="completos" class="tab-pane fade in active">
+			<div class="row">
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(1)">COMPLETO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(2)">ITALIANO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(3)">ESPECIAL</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(4)">PALTA<br>MAYO</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(5)">TOMATE<br>MAYO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(6)">PREMIUM</button></div>
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(7)">PREMIUM<br>ITALIANO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(8)">CHAPARRITA</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(9)">SOLITARIO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(10)">COMPLETO<br>SIN<br>SALCHICHA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(11)">ITALIANO<br>SIN<br>SALCHICHA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(12)">AS DE<br>LOMO</button></div>				
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(13)">AS DE<br>AVE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+		</div>	
+		<div id="churrascos" class="tab-pane fade">
+			<div class="row">
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(17)">CHURRASCO<br>SOLO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(18)">CHURRASCO<br>ITALIANO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(19)">CHURRASCO<br>COMPLETO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(20)">CHACARERO</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(21)">BARROS<br>LUCO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(22)">CHURRASCO<br>TOMATE</button></div>
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(23)">CHURRASCO<br>PALTA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(24)">CHURRASCO<br>LECHUGA</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+			<div class="row">
+			<br></br>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+		</div>	
+		<div id="sandwich" class="tab-pane fade">
+			<div class="row">
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(33)">AVE<br>SOLA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(34)">AVE<br>MAYO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(35)">AVE<br>PALTA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(36)">AVE<br>ITALIANA</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(37)">AVE<br>COMPLETA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(38)">AVE<br>LUCO</button></div>
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(39)">AVE<br>CHACARERA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(40)">AVE<br>TOMATE</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(41)">QUESO<br>CALIENTE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(42)">BARROS<br>JARPA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+		</div>
+		<div id="liquidos" class="tab-pane fade">
+			<div class="row">
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(49)">CAF&#201;</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(50)">T&#201;</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(51)">COCA COLA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(52)">SPRITE</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(53)">FANTA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(54)">SODA</button></div>
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(55)">LECHE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(56)">MILO</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(57)">LECHE<br>CON MILO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(58)">CAPUCCINO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(59)">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+		</div>
+		<div id="agregados" class="tab-pane fade">
+			<div class="row">
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(65)">LOMO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(66)">AVE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(67)">SALCHICHA<br>PF</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(68)">SALCHICHA<br>LLANQUIHUE</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(69)">PALTA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(70)">QUESO</button></div>
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(71)">POROTOS<br>VERDES</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(72)">TOMATE</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(73)">LECHUGA</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(74)">AJ&#205;</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(75)">CHAMPIÑONEZ</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(76)">QUESILLO</button></div>				
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+		</div>
+		<div id="observaciones" class="tab-pane fade">
+			<div class="row">
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(81)">SIN<br>MAYO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(82)">POCA<br>MAYO</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(83)">CON<br>AJ&#205;</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(84)">POCO<br>AJ&#205;</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(85)">SIN<br>AJ&#205;</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+		</div>
+		<div id="cooler" class="tab-pane fade">
+			<div class="row">
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(97)">COCA COLA<br>LT</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(98)">FANTA LT</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(99)">SPRITE LT</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(100)">COCA 1/2</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(101)">FANTA 1/2</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(102)">SPRITE 1/2</button></div>
+  				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(103)">COCA MINI</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(104)">FANTA MINI</button></div>
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(105)">VITAL C/G</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(106)">VITAL S/G</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(107)">NECTAR</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg" ng-click="agregarProducto(108)">ENERGIZANTE</button></div>				
+			</div>
+			<br></br>
+			<div class="row">
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>
+				<div class="col-sm-3"><button type="button" class="btn btn-default btn-lg">DISPONIBLE</button></div>				
+			</div>
+		</div>
+		<div id="pedido" class="tab-pane fade">
+		
+		<div class="container">
+            <div class="table-responsive">          
+				<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>DETALLE</th>
+					<th>CANTIDAD</th>
+					<th>PRECIO</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pedido" style="background-color:{{$even?'white':'#95f0b3'}}">
+					<th>{{item.producto.id}}</th>
+					<th>{{item.producto.nombre}}</th>
+					<th>{{item.cantidad}}</th>
+					<th>{{item.producto.valor}}</th>
+				</tr>
+			</tbody>
+				</table>
+			</div>
+			
+		</div>
+		<div class="container">
+            <div class="table-responsive">          
+				<table class="table">
+			<thead>
+				<tr>
+					<th>PEDIDO N°</th>
+					<th>MESA</th>
+					<th>FECHA</th>
+					<th>TOTAL</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="background-color:white">
+					<th>1</th>
+					<th>3</th>
+					<th>9-10-15</th>
+					<th>{{ getTotal() }}</th>
+				</tr>
+			</tbody>
+				</table>
+			</div>
+			
+		</div>	
+		</div>
+	</div>
+</div>
+<!-- SEPARACION ------------------------------------------------------------------------------------ -->
+	<HR NOSHADE>
+	<div class="bs-resapp">
+		<div class="col-sm-2"><button type="button" class="btn btn-primary btn-lg">ATR&#193;S</button></div>
+		<div class="col-sm-2"><button type="button" class="btn btn-primary btn-lg">BORRAR</button></div>
+		<div class="col-sm-2"><button type="button" class="btn btn-primary btn-lg">GUARDAR</button></div>
+		<div class="col-sm-2"><button type="button" class="btn btn-primary btn-lg">CONFIRMAR</button></div>
+		<div class="col-sm-2"><button type="button" class="btn btn-primary btn-lg">PAGAR</button></div>
+	</div>
+</body>
+</html>
